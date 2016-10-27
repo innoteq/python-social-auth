@@ -11,14 +11,8 @@ try:
 except ImportError:
     from django.utils.encoding import smart_text
 
-try:
-    from django.db.models import SubfieldBase
-    field_class = functools.partial(six.with_metaclass, SubfieldBase)
-except ImportError:
-    field_class = functools.partial(six.with_metaclass, type)
 
-
-class JSONField(field_class(models.TextField)):
+class JSONField(models.TextField):
     """Simple JSON field that stores python structures as JSON strings
     on database.
     """
